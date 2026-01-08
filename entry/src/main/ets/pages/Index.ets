@@ -23,13 +23,27 @@ struct ContactBooks {
       }
       .width('100%')
 
-      // .backgroundColor(Color.Red)
-
       // 联系人列表
       Column(){
         List() {
-
+          ForEach(Array.from({length:10}), (item: number, index) => {
+            ListItem(){
+              Row(){
+                Image($r('app.media.person'))
+                  .width(40)
+                  .height(40)
+                  .margin(10)
+                Text('小明')
+                  .fontSize(20)
+                  .fontWeight(FontWeight.Bold)
+              }
+            }
+          })
         }
+        .height('100%')
+        .width('100%')
+        .divider({strokeWidth: 1, startMargin: 10, endMargin: 10, color: Color.Gray})
+        // .backgroundColor(Color.Red)
       }
       .width('100%')
     }
