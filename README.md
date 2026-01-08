@@ -16,7 +16,7 @@
 
 - **IDE**: DevEco Studio
 - **语言**: ArkTS
-- **SDK**: HarmonyOS API (请根据实际使用的 API 版本填写，如 API 9 或 API 10)
+- **SDK**: HarmonyOS API V15
 
 ## 🚀 快速开始
 
