@@ -38,4 +38,9 @@
 
 ---
 
+## 模拟机演示
+1. **通讯录静态布局页面**
+![img.png](img.png)
+
+
 如果你有任何建议或发现了 Bug，欢迎提交 Issue 或 Pull Request！
