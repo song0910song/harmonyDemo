@@ -2,7 +2,7 @@ import { pinyin4js } from '@ohos/pinyin4js'
 
 let rawText = '小明'
 let tran:string = pinyin4js.convertToPinyinString(rawText, " ", pinyin4js.WITHOUT_TONE)
-console.info(tran)
+
 
 @Entry
 @Component
