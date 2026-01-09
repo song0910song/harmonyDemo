@@ -52,9 +52,14 @@ export class ContactGenerator {
     const icons: Resource[] = ContactGenerator.icons;
     for (let index = 0; index < len; index++) {
       ntactPersons.push(new ContactPerson(names[index], icons[index]))
-      console.info(JSON.stringify(ntactPersons))
     }
     return ntactPersons;
   }
+}
+
+
+// 联系人信息实体类
+export class GetPersonInfo {
+  static perNum: number = ContactGenerator.generate().length;
 }
 
