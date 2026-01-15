@@ -1,18 +1,21 @@
-
 /**
  联系人列表
  **/
-import ItemData from "../ViewModel/ItemData"
-import MainViewModel from "../ViewModel/MainViewModel"
+
+import { ContactModel } from '../Model/ContactModel'
+import generatorData from '../Model/ContactModel'
 
 @Preview
 @Component
 export default struct ContactList {
+  // 定义生成联系人的数量
+  contactLists: ContactModel[] = generatorData.generatorContacts(10)
+
   // 简化重复布局
   @Builder
-  contactListItemCell(item: ItemData) {
+  contactListItemCell(item: ContactModel) {
     Row() {
-      Image(item.img)
+      Image(item.icon)
         .width(30)
         .height(30)
         .borderRadius(15)
@@ -48,7 +51,7 @@ export default struct ContactList {
 
       // 联系人列表
       List() {
-        ForEach(MainViewModel.getContactListData(), (item: ItemData, index: number) =>{
+        ForEach(this.contactLists, (item: ContactModel, index: number) => {
           ListItem() {
             this.contactListItemCell(item)
           }
