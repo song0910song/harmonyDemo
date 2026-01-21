@@ -6,15 +6,27 @@ import { ContactModel } from '../Model/ContactModel'
 import { ContactGroup, } from '../Model/ContactGroup'
 import generatorData from '../Model/ContactModel'
 import ContactGroupManager from '../Model/ContactGroup'
+import router from '@ohos.router';
 
-@Preview
+
+@Entry
 @Component
-export default struct ContactList {
+struct ContactList {
   // 定义生成联系人的数量，并分组
   private contactGroupManger: ContactGroupManager =
     new ContactGroupManager(generatorData.generatorContacts(10))
   private contactGroups = this.contactGroupManger.getGroups()
   private totalContacts = this.contactGroupManger.getTotalContactsCount()
+
+  // 导航到详情页
+  private navigateToDetail(contact: ContactModel) {
+    console.log('导航到联系人详情页：' + contact.name);
+    // 这里可以添加路由导航逻辑
+    router.pushUrl({
+      url: 'pages/Detail',
+      params: { contact: contact }
+    })
+  }
 
   // 列表组件
   @Builder
@@ -34,6 +46,9 @@ export default struct ContactList {
     .padding({
       left: 15,
       right: 20
+    })
+    .onClick(() => {
+      this.navigateToDetail(item);
     })
   }
 
