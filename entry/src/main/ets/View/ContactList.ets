@@ -3,7 +3,7 @@
  **/
 
 import { ContactModel } from '../Model/ContactModel'
-import { ContactGroup,} from '../Model/ContactGroup'
+import { ContactGroup, } from '../Model/ContactGroup'
 import generatorData from '../Model/ContactModel'
 import ContactGroupManager from '../Model/ContactGroup'
 
@@ -41,10 +41,11 @@ export default struct ContactList {
   @Builder
   groupSortCell(inital: string) {
     Text(inital)
-      .fontSize(20)
+      .fontSize(22)
+      .fontWeight(FontWeight.Bold)
       .backgroundColor($r('sys.color.container_modal_unfocus_background'))
       .width('100%')
-      .padding(5)
+      .padding({ left: 10, bottom: 5 })
   }
 
   build() {
@@ -75,13 +76,18 @@ export default struct ContactList {
               .height(60)
             })
           }
-          .divider({strokeWidth:5, endMargin: 10, color: Color.Black})
+          .divider({
+            strokeWidth: 1,
+            color: '#F0F0F0',
+            startMargin: 70,
+            endMargin: 20
+          })
         })
-
-
       }
+      .layoutWeight(1)
     }
     .width('100%')
     .height('100%')
+
   }
 }

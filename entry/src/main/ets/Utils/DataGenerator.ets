@@ -35,6 +35,13 @@ export default class DataGenerator {
     'gmail.com', 'yahoo.com', 'outlook.com', 'hotmail.com', 'qq.com',
     '163.com', '126.com', 'sina.com', 'mail.com',]
 
+  // 使用时间戳基础的唯一标识符
+  generatorID() {
+    const timestamp = new Date().getTime().toString()
+    const randomPart = Math.random().toString(36).substring(2, 9)
+    return `${timestamp}-${randomPart}`
+  }
+
   generatorRandomName() {
     // 随机选择一个姓氏
     const randomSurname = this.COMMON_SURNAMES[this.random(this.COMMON_SURNAMES.length)]
@@ -43,12 +50,14 @@ export default class DataGenerator {
     return randomSurname + givenName
   }
 
+  // 随机头像
   generatorRandomIcon() {
     const randomIcon = this.ICON[this.random(this.ICON.length)]
 
     return randomIcon
   }
 
+  // 随机电话号码
   generatorRandomPhone() {
     const prefix = this.MOBILE_PREFIXES[this.random(this.MOBILE_PREFIXES.length)]
     const suffix:string = Array.from<number, number>({ length: 8 }, (): number=> this.random(10)).join('')
@@ -56,17 +65,15 @@ export default class DataGenerator {
     return prefix + suffix
   }
 
+  // 随机邮箱
   generatorRandomEmail() {
     const domain = this.COMMON_DOMAINS[this.random(this.COMMON_DOMAINS.length)]
 
     return this.generatorRandomName() + '@' + domain
   }
 
-  private random(length?: number) {
-    if (length == undefined) {
-      return Math.floor(Math.random())
-    }else {
-      return Math.floor(Math.random() * length)
-    }
+  // 产生随机数
+  private random(length: number = 1) {
+    return Math.floor(Math.random() * length)
   }
 }

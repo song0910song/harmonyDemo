@@ -1,4 +1,4 @@
-import { ContactModel, Contacts } from './ContactModel'
+import { ContactModel } from './ContactModel'
 
 /**
  * 联系人分组数据模型
@@ -154,7 +154,7 @@ export default class ContactGroupManager {
   /**
    * 移除联系人并重新分组
    */
-  removeContact(contactId: number): boolean {
+  removeContact(contactId: string): boolean {
     const index = this.contacts.findIndex(contact => contact.id === contactId);
     if (index !== -1) {
       this.contacts.splice(index, 1);

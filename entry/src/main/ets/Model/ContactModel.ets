@@ -4,16 +4,20 @@
 import DataGenerator from "../Utils/DataGenerator";
 import { pinyin4js } from '@ohos/pinyin4js'
 
+/**
+ * 联系人模型
+ */
 export class ContactModel {
-  id: number;
+  id: string; // 改为string类型以支持UUID
   icon: Resource;
   name: string;
   phone: string;
   email: string;
   inital: string = '';
 
-  constructor(id: number, name: string, icon: Resource, phone: string = '', email: string = '', inital: string = '') {
-    // 可以添加初始化逻辑
+  constructor(id: string, name: string, icon: Resource, phone: string = '', email: string = '', inital: string = '') {
+    // 验证ID格式，如果无效则生成新的UUID
+
     this.id = id;
     this.name = name;
     this.icon = icon;
@@ -23,7 +27,11 @@ export class ContactModel {
   }
 }
 
-export class Contacts {
+/**
+ * 生成联系人
+ */
+
+class Contacts {
   private generatorContact: DataGenerator = new DataGenerator()
 
   generatorContacts(len: number): ContactModel[] {
@@ -33,10 +41,13 @@ export class Contacts {
       const name = this.generatorContact.generatorRandomName()
       const phoneNum = this.generatorContact.generatorRandomPhone()
       const email = this.generatorContact.generatorRandomEmail()
+      // 使用UUID生成器替换索引ID，确保唯一性
+      const uniqueId = this.generatorContact.generatorID();
 
-      contacts.push(new ContactModel(i, name, icon,
+      contacts.push(new ContactModel(uniqueId, name, icon,
         phoneNum, email, this.getInital(name)))
-      // console.log(contacts[i].inital);
+
+      console.log(uniqueId)
     }
     return contacts
   }
@@ -56,7 +67,3 @@ export class Contacts {
 }
 
 export default new Contacts()
-
-
-
-
