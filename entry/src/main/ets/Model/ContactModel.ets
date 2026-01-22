@@ -2,25 +2,34 @@
  * 通讯录联系人数据模型
  */
 import DataGenerator from "../Utils/DataGenerator";
+import { MoreInfo } from "../Utils/DataGenerator";
 import { pinyin4js } from '@ohos/pinyin4js'
 
 /**
  * 联系人模型
  */
 export class ContactModel {
+
+  private data = new DataGenerator()
+  private moreInfo: MoreInfo = this.data.generatorRandomMoreInfo() // 更多信息
+  private randomColor: string = this.data.generatorRandomColor() // 16进制颜色
+
   id: string; // 改为string类型以支持UUID
-  icon: Resource;
+  color: string = this.randomColor
   name: string;
   phone: string;
   email: string;
-  inital: string = '';
+  inital: string = ''
 
-  constructor(id: string, name: string, icon: Resource, phone: string = '', email: string = '', inital: string = '') {
+  company: string = this.moreInfo.company
+  position: string = this.moreInfo.position
+  address: string = this.moreInfo.address
+
+  constructor(id: string, name: string, phone: string = '', email: string = '', inital: string = '') {
     // 验证ID格式，如果无效则生成新的UUID
 
     this.id = id;
     this.name = name;
-    this.icon = icon;
     this.phone = phone;
     this.email = email;
     this.inital = inital;
@@ -37,17 +46,15 @@ class Contacts {
   generatorContacts(len: number): ContactModel[] {
     let contacts: ContactModel[] = []
     for (let i = 0; i < len; i++) {
-      const icon = this.generatorContact.generatorRandomIcon()
       const name = this.generatorContact.generatorRandomName()
       const phoneNum = this.generatorContact.generatorRandomPhone()
-      const email = this.generatorContact.generatorRandomEmail()
+      const email = this.generatorContact.generatorRandomEmail(name)
       // 使用UUID生成器替换索引ID，确保唯一性
       const uniqueId = this.generatorContact.generatorID();
 
-      contacts.push(new ContactModel(uniqueId, name, icon,
-        phoneNum, email, this.getInital(name)))
+      contacts.push(new ContactModel(uniqueId, name, phoneNum, email, this.getInital(name)))
 
-      console.log(uniqueId)
+      // console.log(uniqueId)
     }
     return contacts
   }

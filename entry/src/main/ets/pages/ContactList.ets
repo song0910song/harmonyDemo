@@ -32,11 +32,15 @@ struct ContactList {
   @Builder
   contactListItemCell(item: ContactModel) {
     Row() {
-      Image(item.icon)
+      Text(item.name[2] == undefined ? item.name[1] : item.name[2])
         .width(30)
         .height(30)
         .borderRadius(15)
         .margin({ right: 15 })
+        .backgroundColor(item.color)
+        .fontColor(Color.White)
+        .fontSize(20)
+        .textAlign(TextAlign.Center)
       Text(item.name)
         .fontWeight(FontWeight.Medium)
         .fontSize('12fp')
@@ -47,6 +51,7 @@ struct ContactList {
       left: 15,
       right: 20
     })
+    .shadow(ShadowStyle.OUTER_DEFAULT_SM)
     .onClick(() => {
       this.navigateToDetail(item);
     })
